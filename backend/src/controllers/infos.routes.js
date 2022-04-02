@@ -17,7 +17,7 @@ router.post(
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             sexe: req.body.sexe,
-            birthdate: req.body.birthdate
+            birthdate: Date.parse(req.body.birthdate)
         })
         console.log(infosUser.id)
         res.status(201).end()
