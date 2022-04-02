@@ -9,12 +9,11 @@ User.init({
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true
     },
-    firstName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
+    pseudo:{
+      type: DataTypes.STRING,
+        allowNull: false
     },
-    lastName: {
+    email:{
         type: DataTypes.STRING,
         allowNull: false
     },

@@ -25,26 +25,25 @@ router.get('/:firstName', async (req, res) => {
 
 router.post(
   '/',
-  body('firstName').notEmpty(),
-  body('lastName').notEmpty(),
+  body('pseudo').notEmpty().isLength({min: 4}),
+  body('email').notEmpty(),
   body('password').notEmpty().isLength({ min: 5 }),
   async (req, res) => {
       validateBody(req);
-      const jane = await User.create({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        password: req.body.password
+      const utilisateur = await User.create({
+          pseudo: req.body.pseudo,
+        password: req.body.password,
+          email: req.body.email,
       });
-    console.log(jane.id);
+    console.log(utilisateur.id);
     res.status(201).end();
   }
 );
 
 router.put('/:id', async (req, res) => {
   await User.update({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      password: req.body.password
+      pseudo: req.body.pseudo,
+      password: req.body.password,
   }, {
       where:{
           id: req.params.id
