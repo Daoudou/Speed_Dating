@@ -23,6 +23,21 @@ router.get('/:firstName', async (req, res) => {
   res.send(foundUser);
 });
 
+router.post('/login', body('email').notEmpty(),body('password').notEmpty(), async (req,res) => {
+
+    validateBody(req)
+    const userLogin = await User.findAll({
+        where : {
+            email: req.body.email,
+            password: req.body.password
+        }
+    })
+    if (!userLogin){
+        throw new Error('Login error')
+    }
+    res.send('Login success')
+})
+
 router.post(
   '/',
   body('pseudo').notEmpty().isLength({min: 4}),
