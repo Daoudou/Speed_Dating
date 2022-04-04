@@ -1,8 +1,11 @@
 const express = require('express');
-const { body } = require('express-validator');
+const {body} = require('express-validator');
 const router = express.Router();
-const { validateBody } = require('./validation/route.validator');
+const {validateBody} = require('./validation/route.validator');
 const User = require('.././models/user.model')
+var bcrypt = require('bcryptjs')
+const jwt = require("jsonwebtoken");
+var salt = bcrypt.genSaltSync(12)
 
 
 router.get('/', async (req, res) => {
@@ -12,68 +15,86 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:firstName', async (req, res) => {
-  const foundUser = await User.findAll({
-      where:{
-        firstName: req.params.firstName
-      }
-  })
-  if (!foundUser) {
-    throw new Error('User not found');
-  }
-  res.send(foundUser);
-});
-
-router.post('/login', body('email').notEmpty(),body('password').notEmpty(), async (req,res) => {
-
-    validateBody(req)
-    const userLogin = await User.findAll({
-        where : {
-            email: req.body.email,
-            password: req.body.password
+    const foundUser = await User.findAll({
+        where: {
+            firstName: req.params.firstName
         }
     })
-    if (!userLogin){
-        throw new Error('Login error')
+    if (!foundUser) {
+        throw new Error('User not found');
     }
-    res.send('Login success')
+    res.send(foundUser);
+});
+
+router.post('/login', body('email').notEmpty(), body('password').notEmpty(), async (req, res) => {
+
+    validateBody(req)
+    const userLogin = await User.findOne({
+        where: {
+            email: req.body.email
+        }
+    })
+    if (!userLogin) {
+        throw new Error('User not found')
+    }
+
+    const passwordVALID = bcrypt.compareSync(req.body.password, userLogin.password)
+    if (passwordVALID) {
+        const token = jwt.sign(
+            {id: userLogin.id, email: userLogin.email, password: userLogin.password},
+            'abcdefghijklmnoqrstuvxyzABSCDEFGHIJKLMNOPQRSTUVWXYZ'
+        )
+        res.send('Login success\n' + userLogin.firstName + '\n' + userLogin.email + '\n' + token)
+    } else {
+        res.status(400).send('password invalid')
+    }
 })
 
 router.post(
-  '/',
-  body('pseudo').notEmpty().isLength({min: 4}),
-  body('email').notEmpty(),
-  body('password').notEmpty().isLength({ min: 5 }),
-  async (req, res) => {
-      validateBody(req);
-      const utilisateur = await User.create({
-          pseudo: req.body.pseudo,
-        password: req.body.password,
-          email: req.body.email,
-      });
-    console.log(utilisateur.id);
-    res.status(201).end();
-  }
+    '/',
+    body('firstName').notEmpty(),
+    body('lastName').notEmpty(),
+    body('pseudo').notEmpty().isLength({min: 4}),
+    body('email').notEmpty(),
+    body('password').notEmpty().isLength({min: 5}),
+    body('sexe').notEmpty(),
+    body('birthdate').notEmpty(),
+    async (req, res) => {
+        validateBody(req);
+        const utilisateur = await User.create({
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            pseudo: req.body.pseudo,
+            email: req.body.email,
+            password: bcrypt.hashSync(req.body.password, salt),
+            sexe: req.body.sexe,
+            birthdate: req.body.birthdate,
+            roles: 'MEMBER'
+        });
+        console.log(utilisateur.id);
+        res.status(201).send('Utilisateur creer').end();
+    }
 );
 
 router.put('/:id', async (req, res) => {
-  await User.update({
-      pseudo: req.body.pseudo,
-      password: req.body.password,
-  }, {
-      where:{
-          id: req.params.id
-      }
-  })
-  res.status(204).end();
+    await User.update({
+        pseudo: req.body.pseudo,
+        password: req.body.password,
+    }, {
+        where: {
+            id: req.params.id
+        }
+    })
+    res.status(204).end();
 });
 
 router.delete('/:id', async (req, res) => {
-  await User.destroy({
-      where:{
-          id: req.params.id
-      }
-  })
-  res.status(204).end();
+    await User.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+    res.status(204).end();
 });
 
 exports.initializeRoutes = () => router;
