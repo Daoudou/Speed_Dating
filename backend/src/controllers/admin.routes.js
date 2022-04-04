@@ -7,7 +7,7 @@ const {validateBody} = require("./validation/route.validator");
 const jwt = require("jsonwebtoken");
 var bcrypt = require('bcryptjs')
 
-router.post('/login',body('email').notEmpty(), body('password'),async (req,res)=>{
+router.post('/login', body('email').notEmpty(), body('password'), async (req, res) => {
     validateBody(req)
     const userAdminLogin = await User.findOne({
         where: {
@@ -15,19 +15,19 @@ router.post('/login',body('email').notEmpty(), body('password'),async (req,res)=
         }
     })
 
-    if (!userAdminLogin){
+    if (!userAdminLogin) {
         throw new Error('Admin user not found')
 
     }
 
     const passwordAdminValid = bcrypt.compareSync(req.body.password, userAdminLogin.password)
-    if (passwordAdminValid){
+    if (passwordAdminValid) {
         const token = jwt.sign(
             {id: userAdminLogin.id, email: userAdminLogin.email, password: userAdminLogin.password},
             'abcdefghijklmnoqrstuvxyzABSCDEFGHIJKLMNOPQRSTUVWXYZ'
         )
         res.send('Login Admin success\n' + userAdminLogin.firstName + '\n' + userAdminLogin.email + '\n' + token)
-    }else{
+    } else {
         res.status(400).send('Password admin invalid')
     }
 })
