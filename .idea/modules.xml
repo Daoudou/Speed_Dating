@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../Esimed/JavaScript/General/02-Corrections TD/TD/07-Application front end/.idea/07-Application front end.iml" filepath="$PROJECT_DIR$/../../Esimed/JavaScript/General/02-Corrections TD/TD/07-Application front end/.idea/07-Application front end.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/SpeedDating.iml" filepath="$PROJECT_DIR$/.idea/SpeedDating.iml" />
     </modules>
   </component>

@@ -6,6 +6,7 @@ class IndexController extends BaseController{
         this.loginPasswordElem = $("#loginPassword")
     }
 
+
     async getUsers(email,password){
         const emailLogin = this.loginEmailElem.value
         const passwordLogin = this.loginPasswordElem.value

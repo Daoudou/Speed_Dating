@@ -3,6 +3,7 @@ class userApi{
         this.api = "http://localhost:8080/users"
     }
 
+
     myFetch(url){
         return new Promise(((resolve, reject) =>{
             fetch(`${this.api}/${url}`)
