@@ -4,28 +4,35 @@ class userApi{
     }
 
 
-    myFetch(url){
+    myFetch(url, body){
+        console.log(`userApi.myFetch(${this.api}/${url}, ${JSON.stringify(body)})`)
         return new Promise(((resolve, reject) =>{
-            fetch(`${this.api}/${url}`)
-                .then(response => {
-                    if (response.status !== 200){
-                        reject(response.status)
+            fetch(`${this.api}/${url}`,{
+                method: 'POST',
+                headers: {
+                    'Accept' : 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body)
+            })
+                .then(async response => {
+                    if (response.status !== 200) {
+                        reject(await response.text())
                     } else {
-                        resolve(response.json())
+                        resolve(response.text())
                     }
                 })
                 .catch(error => reject(error))
         }))
     }
 
-    createUsers(firstName, lastName,
-                pseudo, email, password,
-                sexe, birthdate){
-        return this.myFetch(`${firstName}/${lastName}/${pseudo}/${email}/${password}/${sexe}/${birthdate}`)
+    createUsers(body){
+        return this.myFetch(`create`,body)
     }
 
-    getUsers(email,password){
-        return this.myFetch(`${email}/${password}`)
+    loginUsers(body){
+        return this.myFetch(`login`,body)
     }
+
 
 }

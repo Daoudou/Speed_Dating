@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { validateBody } = require('./validation/route.validator');
 const User = require('../models/user.model')
+const Infos = require('../models/infos.model')
 
 router.get('/infos', async(req,res)=>{
     const infos = await User.findAll()

@@ -3,16 +3,22 @@ class Usermodel {
         this.api = new userApi()
     }
 
-    async createUsers(firstName, lastName,
-                pseudo, email, password,
-                sexe, birthdate){
-        return await this.api.createUsers(firstName, lastName,
-                                    pseudo, email, password,
-                                    sexe, birthdate)
+    async createUsers(body){
+        try {
+            return await this.api.createUsers(body)
+        } catch (e){
+            console.error(e)
+            return {error: 'Echec de la creation'}
+        }
     }
 
-    async getUsers(email,password){
-        return await this.api.getUsers(email,password)
+    async loginUsers(body){
+        try {
+            return await this.api.loginUsers(JSON.stringify(body))
+        } catch (e) {
+            console.error(e)
+            return {error : 'Echec de login'}
+        }
     }
 
 }

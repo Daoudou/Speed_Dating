@@ -12,13 +12,31 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="res/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 </head>
+<header>
+    <button onclick="navigate('login')" >Login</button>
+    <button onclick="navigate('register')" >Register</button>
 <body>
+<div id="content"></div>
+
+
+
+<div class="position-fixed top-0 end-0" style="z-index: 11">
+    <div id="globalToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto">Exemple</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" id="globalToastMessage" >
+        </div>
+    </div>
+</div>
     <script type="application/ecmascript" src="app/tools.js"></script>
     <script type="application/ecmascript" src="app/services/usersapi.js"></script>
     <script type="application/ecmascript" src="app/model/usermodel.js"></script>
     <script type="application/ecmascript" src="app/controllers/basecontroller.js"></script>
-    <script>navigate("login")</script>
+    <script type="application/ecmascript" src="app/controllers/index.js"></script>
+<!--    <script>navigate("login")</script>-->
 </body>
+</header>
 </html>

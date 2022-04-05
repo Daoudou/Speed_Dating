@@ -1,4 +1,4 @@
-class Basecontroller {
+class BaseController {
     constructor() {
         this.model = new Usermodel()
     }

@@ -51,7 +51,7 @@ router.post('/login', body('email').notEmpty(), body('password').notEmpty(), asy
 })
 
 router.post(
-    '/',
+    '/create',
     body('firstName').notEmpty(),
     body('lastName').notEmpty(),
     body('pseudo').notEmpty().isLength({min: 4}),
@@ -60,19 +60,24 @@ router.post(
     body('sexe').notEmpty(),
     body('birthdate').notEmpty(),
     async (req, res) => {
-        validateBody(req);
-        const utilisateur = await User.create({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            pseudo: req.body.pseudo,
-            email: req.body.email,
-            password: bcrypt.hashSync(req.body.password, salt),
-            sexe: req.body.sexe,
-            birthdate: req.body.birthdate,
-            roles: 'MEMBER'
-        });
-        console.log(utilisateur.id);
-        res.status(201).send('Utilisateur creer').end();
+        try {
+            validateBody(req);
+            const utilisateur = await User.create({
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                pseudo: req.body.pseudo,
+                email: req.body.email,
+                password: bcrypt.hashSync(req.body.password, salt),
+                sexe: req.body.sexe,
+                birthdate: req.body.birthdate,
+                roles: 'MEMBER'
+            });
+            console.log(utilisateur.id);
+            res.status(201).send('Utilisateur creer').end();
+        } catch (e) {
+            console.error(e)
+            return {error: "Echec de la creation de l'utilisateur"}
+        }
     }
 );
 
