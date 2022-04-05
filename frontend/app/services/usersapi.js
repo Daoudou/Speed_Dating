@@ -1,6 +1,6 @@
 class userApi{
     constructor() {
-        this.api = "http://localhost:8080/users"
+        this.api = "http://localhost:3000/users"
     }
 
 
