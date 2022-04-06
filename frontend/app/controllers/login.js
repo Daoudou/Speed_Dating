@@ -19,6 +19,7 @@ class LoginController extends BaseController {
                     modalLogin.style.display = "block"
                     loginCloseBTN.onclick = function () {
                         modalLogin.style.display = "none"
+                        navigate('accueil')
                     }
                     console.log('201')
                     console.log(login)
