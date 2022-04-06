@@ -7,15 +7,53 @@
 <body>
 <div class="row">
     <div class="col-8">
-        <h1>Speed Dating Industrie</h1>
+        <h1>Speed Dating Industries</h1>
     </div>
     <div class="col-4">
-        <div id="buttonGroupLogger"  class="btn-group" role="group" aria-label="Basic example">
-            <div id="buttonLogger" class="buttonLog" >
-                <button>Ajouter un Date</button>
+        <div id="buttonGroupAccueilLogger"  class="btn-group" role="group" aria-label="Basic example">
+            <div id="buttonAccueilLogger" class="buttonLog" >
+                <button id="addButtonDateList" class="btn btn-secondary btn-lg" type="button" onclick="acceuilController.dateListDisplay()">Ajouter une rencontre</button>
+                <button class="btn btn-secondary btn-lg" type="button">Profil</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<div id="addDateModal" class="modal" tabindex="-1" role="dialog" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1>Ajouter une personne a votre liste</h1>
+            </div>
+            <div class="modal-body">
+                <input id="firstNameModalList" type="text" placeholder="Nom">
+                <input id="lastNameModalList" type="text" placeholder="Prenom">
+                <input id="sexeModalList" type="text" placeholder="Sexe">
+                <label>Note</label>
+                <select id="noteDate" name="note">
+                    <option value="">0</option>
+                    <option value="">1</option>
+                    <option value="">2</option>
+                    <option value="">3</option>
+                    <option value="">4</option>
+                    <option value="">5</option>
+                    <option value="">6</option>
+                    <option value="">7</option>
+                    <option value="">8</option>
+                    <option value="">9</option>
+                    <option value="">10</option>
+                </select>
+                <input id="dateModalList" type="date">
+                <input id="commentModalList" type="text" placeholder="Commentaire">
+            </div>
+            <div class="modal-footer">
+                <button id="registerModalBtnClose" type="button" class="btn btn-secondary" data-dismiss="modal" onclick="acceuilController.createDateInfos()">Ajouter</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

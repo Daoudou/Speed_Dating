@@ -12,7 +12,7 @@ const Dating = sequelize.define('Dating',{
     },
     idUser: {
         type: DataTypes.UUID,
-        foreignKey: true,
+        defaultValue: DataTypes.UUIDV4,
         references:{
             model : User,
             key : 'id'
@@ -20,7 +20,7 @@ const Dating = sequelize.define('Dating',{
     },
     idInfo:{
         type: DataTypes.UUID,
-        foreignKey: true,
+        defaultValue: DataTypes.UUIDV4,
         references:{
             model : User,
             key : 'id'
@@ -28,7 +28,7 @@ const Dating = sequelize.define('Dating',{
     },
     dateDating:{
         type: DataTypes.DATE,
-        allowNull: false
+        allowNull: true
     },
     comment:{
         type:DataTypes.STRING,

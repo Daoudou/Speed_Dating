@@ -14,9 +14,9 @@ router.get('/',async (req,res)=>{
 router.post('/datingAdd',async (req,res)=>{
 
     try {
-        validateBody(req)
+        //validateBody(req)
         const dating =  await Dating.create({
-            dateDating: Date.parse(req.body.dateDating),
+            dateDating: req.body.dateDating,
             comment: req.body.comment,
             note: parseInt(req.body.note)
         })

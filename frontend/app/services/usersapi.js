@@ -1,6 +1,6 @@
 class userApi{
     constructor() {
-        this.api = "http://localhost:3000/users"
+        this.api = "http://localhost:3000"
     }
 
 
@@ -26,16 +26,37 @@ class userApi{
         }))
     }
 
+    async myFetchGet(url) {
+        return new Promise((resolve, reject) => {
+            fetch(`${this.api}/${url}`)
+                .then(r => {
+                    if (r.status !== 200) {
+                        reject(r.status)
+                    } else {
+                        resolve(r.json())
+                    }
+                })
+                .catch(
+                    err => reject(err)
+                );
+        })
+    }
+
+
     createUsers(body){
-        return this.myFetch(`create`,body)
+        return this.myFetch(`users/create`,body)
     }
 
     loginUsers(body){
-        return this.myFetch(`login`,body)
+        return this.myFetch(`users/login`,body)
     }
 
-    getToken(){
+    createDateInfos(body){
+        return this.myFetch(`infos/infosAdd`,body)
+    }
 
+    createDate(body){
+        return this.myFetch(`dating/datingAdd`,body)
     }
 
 }

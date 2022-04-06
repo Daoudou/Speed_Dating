@@ -21,4 +21,22 @@ class Usermodel {
         }
     }
 
+    async createDateInfos(body){
+        try {
+            return await this.api.createDateInfos(body)
+        }catch (e) {
+            console.error(e)
+            return {error: 'Echec lors de l\'ajout du date'}
+        }
+    }
+
+    async createDate(body){
+        try {
+            return await this.api.createDate(body)
+        }catch (e) {
+            console.error(e)
+            return {error: 'Echec de l\'ajout des infos de rencontre'}
+        }
+    }
+
 }
