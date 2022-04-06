@@ -1,20 +1,15 @@
 
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="../res/css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Speed Dating</title>
-
 <div class="container">
     <div class="form-container log-in-container">
-        <form>
-            <h1>Connexion</h1>
-            <input id="loginEmail" type="email" placeholder="Email" required>
-            <input id="loginPassword" type="password" placeholder="Password" required>
-            <a href="#">Mot de passe oublié ?</a>
-            <a href="#" onclick="navigate('register')">Vous n'avez pas de compte existant ?</a>
-            <button class="form-control" onclick="loginController.loginUsers()" >Log In</button>
-        </form>
+           <div class="formConnected">
+               <h1>Connexion</h1>
+               <input id="loginEmail" type="email" placeholder="Email" required>
+               <input id="loginPassword" type="password" placeholder="Password" required>
+               <a href="#">Mot de passe oublié ?</a>
+               <a href="#" onclick="navigate('register')">Vous n'avez pas de compte existant ?</a>
+               <button onclick="loginController.loginUsers()" >Log In</button>
+           </div>
+
     </div>
     <div class="overlay-container">
         <div class="overlay">
@@ -26,4 +21,3 @@
     </div>
 </div>
 
-</head>

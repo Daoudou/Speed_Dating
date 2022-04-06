@@ -13,13 +13,13 @@ class userApi{
                     'Accept' : 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(body)
+                body: body
             })
                 .then(async response => {
                     if (response.status !== 200) {
                         reject(await response.text())
                     } else {
-                        resolve(response.text())
+                        resolve(response.status)
                     }
                 })
                 .catch(error => reject(error))

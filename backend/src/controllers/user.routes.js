@@ -28,26 +28,32 @@ router.get('/:firstName', async (req, res) => {
 
 router.post('/login', body('email').notEmpty(), body('password').notEmpty(), async (req, res) => {
 
-    validateBody(req)
-    const userLogin = await User.findOne({
-        where: {
-            email: req.body.email
+    try {
+        validateBody(req)
+        const userLogin = await User.findOne({
+            where: {
+                email: req.body.email
+            }
+        })
+        if (!userLogin) {
+            throw new Error('User not found')
         }
-    })
-    if (!userLogin) {
-        throw new Error('User not found')
+
+        const passwordVALID = bcrypt.compareSync(req.body.password, userLogin.password)
+        if (passwordVALID) {
+            const token = jwt.sign(
+                {id: userLogin.id, email: userLogin.email, password: userLogin.password},
+                'abcdefghijklmnoqrstuvxyzABSCDEFGHIJKLMNOPQRSTUVWXYZ'
+            )
+            res.send('Login success\n' + userLogin.firstName + '\n' + userLogin.email + '\n' + token)
+        } else {
+            res.status(400).send('password invalid')
+        }
+    }catch (e) {
+        console.error(e)
+        return {error: 'Login erreur'}
     }
 
-    const passwordVALID = bcrypt.compareSync(req.body.password, userLogin.password)
-    if (passwordVALID) {
-        const token = jwt.sign(
-            {id: userLogin.id, email: userLogin.email, password: userLogin.password},
-            'abcdefghijklmnoqrstuvxyzABSCDEFGHIJKLMNOPQRSTUVWXYZ'
-        )
-        res.send('Login success\n' + userLogin.firstName + '\n' + userLogin.email + '\n' + token)
-    } else {
-        res.status(400).send('password invalid')
-    }
 })
 
 router.post(
