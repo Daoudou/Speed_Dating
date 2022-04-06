@@ -45,7 +45,9 @@ router.post('/login', body('email').notEmpty(), body('password').notEmpty(), asy
                 {id: userLogin.id, email: userLogin.email, password: userLogin.password},
                 'abcdefghijklmnoqrstuvxyzABSCDEFGHIJKLMNOPQRSTUVWXYZ'
             )
-            res.send('Login success\n' + userLogin.firstName + '\n' + userLogin.email + '\n' + token)
+            res.send(token)
+            console.log(token)
+
         } else {
             res.status(400).send('password invalid')
         }

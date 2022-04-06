@@ -5,7 +5,7 @@ class userApi{
 
 
     myFetch(url, body){
-        console.log(`userApi.myFetch(${this.api}/${url}, ${JSON.stringify(body)})`)
+       // console.log(`userApi.myFetch(${this.api}/${url}, ${JSON.stringify(body)})`)
         return new Promise(((resolve, reject) =>{
             fetch(`${this.api}/${url}`,{
                 method: 'POST',
@@ -13,13 +13,13 @@ class userApi{
                     'Accept' : 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: body
+                body: JSON.stringify(body)
             })
                 .then(async response => {
                     if (response.status !== 200) {
                         reject(await response.text())
                     } else {
-                        resolve(response.status)
+                        resolve(response.text())
                     }
                 })
                 .catch(error => reject(error))
@@ -34,5 +34,8 @@ class userApi{
         return this.myFetch(`login`,body)
     }
 
+    getToken(){
+
+    }
 
 }

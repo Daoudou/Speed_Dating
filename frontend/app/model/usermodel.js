@@ -14,7 +14,7 @@ class Usermodel {
 
     async loginUsers(body){
         try {
-            return await this.api.loginUsers(JSON.stringify(body))
+            return await this.api.loginUsers(body)
         } catch (e) {
             console.error(e)
             return {error : 'Echec de login'}

@@ -7,6 +7,8 @@ class LoginController extends BaseController {
     async loginUsers() {
             const emailLogin = $("#loginEmail").value
             const passwordLogin = $("#loginPassword").value
+            const modalLogin = $("#loginModal")
+            const loginCloseBTN = $("#loginModalBtnClose")
             console.log(emailLogin)
             console.log(passwordLogin)
             try {
@@ -14,12 +16,21 @@ class LoginController extends BaseController {
                 if (!login) {
                     console.log('401')
                 } else {
+                    modalLogin.style.display = "block"
+                    loginCloseBTN.onclick = function () {
+                        modalLogin.style.display = "none"
+                    }
                     console.log('201')
                 }
             }   catch (e) {
                 console.error(e)
             }
 
+        window.onclick = function (event) {
+            if (event.target === modalLogin){
+                modalLogin.style.display = "none"
+            }
+        }
     }
 }
 
