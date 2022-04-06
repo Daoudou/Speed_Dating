@@ -3,6 +3,7 @@ const { initializeConfigMiddlewares, initializeErrorMiddlwares } = require('./mi
 const userRoutes = require('../controllers/user.routes');
 const infosRoutes = require('../controllers/infos.routes')
 const adminRoutes = require('../controllers/admin.routes')
+const datingRoutes = require('../controllers/dating.routes')
 const { sequelize } = require('../models/db');
 const User = require('../models/user.model')
 const bcrypt = require("bcryptjs");
@@ -40,6 +41,7 @@ class WebServer {
     this.app.use('/users', userRoutes.initializeRoutes());
     this.app.use('/infos',infosRoutes.initializeRoutes());
     this.app.use('/loginAdmin',adminRoutes.initializeRoutes())
+    this.app.use('/dating',datingRoutes.initializeRoutes())
   }
 }
 

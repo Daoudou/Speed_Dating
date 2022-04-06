@@ -21,6 +21,8 @@ class LoginController extends BaseController {
                         modalLogin.style.display = "none"
                     }
                     console.log('201')
+                    console.log(login)
+                    sessionStorage.setItem('Auth',JSON.stringify(login))
                 }
             }   catch (e) {
                 console.error(e)
