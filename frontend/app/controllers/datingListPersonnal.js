@@ -51,8 +51,7 @@ class DatingListPersonnal extends BaseController {
     }
 
     async removeListDate(id){
-        const deleteDateList = this.model.deleteDateList(id)
-        return deleteDateList
+        const deleteDateList = await this.model.deleteDateList(id)
     }
 }
 

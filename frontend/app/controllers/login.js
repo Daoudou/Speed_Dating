@@ -8,9 +8,7 @@ class LoginController extends BaseController {
             const emailLogin = $("#loginEmail").value
             const passwordLogin = $("#loginPassword").value
             const modalLogin = $("#loginModal")
-            const modalLoginError = $("#loginModalError")
             const loginCloseBTN = $("#loginModalBtnClose")
-            const loginCloseBTNError = $("#loginModalErrorBtnClose")
             console.log(emailLogin)
             console.log(passwordLogin)
             try {

@@ -13,6 +13,7 @@ class RegisterController extends BaseController {
         const sexeRegister = $("#registerSexe").value
         const dateRegister = $("#registerDate").value
         const registerModalConfirm = $("#registerModalConfirm")
+        const registerModalCloseBtn = $("#registerModalBtnClose")
         try {
            let msg;
            const str = $("#registerPassword").value
@@ -31,9 +32,13 @@ class RegisterController extends BaseController {
                if (!createUser) {
                    console.log('401')
                } else {
-                   console.log('201')
-                   navigate('accueil')
+                   registerModalConfirm.style.display = "block"
+                   registerModalCloseBtn.onclick = function (){
+                       registerModalConfirm.style.display = "none"
+                       navigate('login')
+                   }
                }
+               console.log('201')
            } else {
                msg = "<p style='color: red'>Mot de passe faible.</p>"
                navigate('index')
