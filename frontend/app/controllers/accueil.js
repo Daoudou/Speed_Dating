@@ -39,12 +39,15 @@ class AccueilController extends BaseController {
         const dateRencontre = $("#dateModalList").value
         const comment = $("#commentModalList").value
         const token = sessionStorage.getItem('Auth')
+        const select = $("#datingSelect").value
         try {
+            console.log(select)
             const dateList = await this.model.createDate({
                 'dateDating': dateRencontre,
                 'comment': comment,
                 'note': note,
-                'UserId': token.id
+                'UserId': token.id,
+                'InfoId': select
             })
             if (!dateList) {
                 console.log(401 + 'Echec de l\'ajout dans les dates')
@@ -55,7 +58,6 @@ class AccueilController extends BaseController {
             console.error(e)
             return {error: 'Error d\'ajout dans la liste'}
         }
-
     }
 
     async createPersonneInfos() {
@@ -85,11 +87,13 @@ class AccueilController extends BaseController {
         const infos = await this.model.getInfos()
         const select = $("#datingSelect")
         for (const infosKey in infos){
-            select.innerHTML +=`<option 
-value="${infos[infosKey].id}">${infos[infosKey].firstName} ${infos[infosKey].lastName}
-</option>`
-            select.value
+            select.innerHTML +=`<option value="${infos[infosKey].id}">${infos[infosKey].firstName} ${infos[infosKey].lastName}</option>`
         }
+    }
+    async logOut(){
+        sessionStorage.clear()
+        localStorage.clear()
+        navigate('index')
     }
 }
 

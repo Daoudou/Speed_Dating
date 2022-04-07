@@ -65,4 +65,12 @@ AddTokenHeader(jwt){
         return this.myFetchGet('infos/infos')
     }
 
+    getDates(){
+        return this.myFetchGet('dating/')
+    }
+
+    getUser(){
+        return this.myFetchGet('users/')
+    }
+
 }

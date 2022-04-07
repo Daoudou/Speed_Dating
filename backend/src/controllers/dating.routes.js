@@ -23,7 +23,8 @@ router.post('/datingAdd', async (req, res) => {
             dateDating: req.body.dateDating,
             comment: req.body.comment,
             note: parseInt(req.body.note),
-            UserId: token.id
+            UserId: token.id,
+            InfoId: req.body.InfoId
         })
         res.status(201).send('Infos de la rencontre ajouter').end()
     } catch (e) {

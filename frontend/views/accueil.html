@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<div class="row">
+<div class="row col-sm-1 col-md-1">
     <div class="col-7">
         <h1>Speed Dating Industries</h1>
     </div>
@@ -17,18 +17,24 @@
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li><a id="addButtonDateList" class="dropdown-item" onclick="acceuilController.dateListDisplay();">Ajouter une rencontre</a></li>
                         <li><a id="addButtonProfilDateList" class="dropdown-item" onclick="acceuilController.addPersonne();">Ajouter une Personne</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" onclick="navigate('index');">Se d&eacute;connecter</a></li>
                     </ul>
                 </div>
-                <button class="btn btn-secondary btn-lg" type="button">Profil</button>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropDownMenuProfil" data-bs-toggle="dropdown" aria-expanded="false">Profil</button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" onclick="navigate('datingListPersonnal')">Liste de rencontre personnel</a></li>
+                        <li><a class="dropdown-item">Parametre</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" onclick="acceuilController.logOut();">Se d&eacute;connecter</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 </div>
 </div>
 
-<div id="addDateModal" class="modal" tabindex="-1" role="dialog">
+<div id="addDateModal" class="modal col-sm-1 col-md-1" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -92,6 +98,7 @@
         </div>
     </div>
 </div>
+
 
 </body>
 </html>

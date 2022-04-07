@@ -40,23 +40,23 @@ router.post('/login', body('email').notEmpty(), body('password').notEmpty(), asy
             throw new Error('User not found')
             res.status(400).end()
 
-        }
-        const passwordVALID = bcrypt.compareSync(req.body.password, userLogin.password)
-        if (passwordVALID) {
-            const token = jwt.sign(
-                {id: userLogin.id, email: userLogin.email, password: userLogin.password},
-                'abcdefghijklmnoqrstuvxyzABSCDEFGHIJKLMNOPQRSTUVWXYZ'
-            )
-            return res.send(token)
-            console.log(token)
-        } else {
-            res.status(400).send('password invalid')
+        }else{
+            const passwordVALID = bcrypt.compareSync(req.body.password, userLogin.password)
+            if (passwordVALID) {
+                const token = jwt.sign(
+                    {id: userLogin.id, email: userLogin.email, password: userLogin.password},
+                    'abcdefghijklmnoqrstuvxyzABSCDEFGHIJKLMNOPQRSTUVWXYZ'
+                )
+                return res.send(token)
+                console.log(token)
+            } else {
+                res.status(400).send('password invalid').end()
+            }
         }
     }catch (e) {
         console.error(e)
         return {error: 'Login erreur'}
     }
-
 })
 
 router.post(

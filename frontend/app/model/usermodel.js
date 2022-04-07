@@ -48,4 +48,22 @@ class Usermodel {
         }
     }
 
+    async getDates(){
+        try {
+            return await this.api.getDates()
+        }catch (e){
+            console.error(e)
+            return {error: 'Echec de la recup des dates'}
+        }
+    }
+
+    async getUser(){
+        try {
+            return await this.api.getUser()
+        }catch (e){
+            console.error(e)
+            return {error: 'Echec de la recup des utilisateur'}
+        }
+    }
+
 }
