@@ -14,17 +14,18 @@ router.get('/', async (req, res) => {
     res.send(users)
 });
 
-router.get('/:firstName', async (req, res) => {
 
-    const foundUser = await User.findAll({
+router.get('/usersId/:id', async (req, res) => {
+
+    const foundUser = await User.findOne({
         where: {
-            firstName: req.params.firstName
+            id: req.params.id
         }
     })
     if (!foundUser) {
         throw new Error('User not found');
     }
-    res.send(foundUser);
+    res.status(200).send(foundUser);
 });
 
 router.post('/login', body('email').notEmpty(), body('password').notEmpty(), async (req, res) => {

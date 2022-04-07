@@ -84,7 +84,7 @@ class AccueilController extends BaseController {
     }
 
     async getInfosUserDate(){
-        const infos = await this.model.getInfos()
+        const infos = await this.model.getInfosList()
         const select = $("#datingSelect")
         for (const infosKey in infos){
             select.innerHTML +=`<option value="${infos[infosKey].id}">${infos[infosKey].firstName} ${infos[infosKey].lastName}</option>`

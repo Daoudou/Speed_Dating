@@ -39,9 +39,18 @@ class Usermodel {
         }
     }
 
-    async getInfos(){
+    async getInfos(id){
         try {
-            return await this.api.getInfos()
+            return await this.api.getInfos(id)
+        }catch (e){
+            console.error(e)
+            return {error: 'Echec de la recup des infos'}
+        }
+    }
+
+    async getInfosList(){
+        try {
+            return await this.api.getInfosList()
         }catch (e){
             console.error(e)
             return {error: 'Echec de la recup des infos'}
@@ -57,9 +66,9 @@ class Usermodel {
         }
     }
 
-    async getUser(){
+    async getUser(id){
         try {
-            return await this.api.getUser()
+            return await this.api.getUser(id)
         }catch (e){
             console.error(e)
             return {error: 'Echec de la recup des utilisateur'}

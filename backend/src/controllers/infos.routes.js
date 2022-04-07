@@ -3,11 +3,21 @@ const router = express.Router();
 const { validateBody } = require('./validation/route.validator');
 const Infos = require('../models/infos.model')
 const {body} = require('express-validator');
+const Dating = require("../models/dating.model");
 
 router.get('/infos', async(req,res)=>{
     const infos = await Infos.findAll()
     console.log(infos.every(info => info instanceof Infos))
     res.send(infos)
+})
+
+router.get('/infoId/:id',async (req,res)=>{
+    const infos = await Infos.findOne({
+        where:{
+            id: req.params.id
+        }
+    })
+    return res.status(200).send(infos)
 })
 
 router.post('/infosAdd',body('firstName'),body('lastName'),body('sexe'),body('birthdate'),async (req,res)=>{
