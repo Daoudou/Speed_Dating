@@ -49,7 +49,7 @@ class AccueilController extends BaseController {
             if (!dateList) {
                 console.log(401 + 'Echec de l\'ajout dans les dates')
             } else {
-                console.log(201 + 'Ajout dans les dates')
+                console.log(201 + 'Ajout dans les rencontres')
             }
         } catch (e) {
             console.error(e)
