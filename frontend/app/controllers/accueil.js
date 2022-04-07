@@ -2,7 +2,6 @@ class AccueilController extends BaseController {
     constructor() {
         super();
         this.model = new Usermodel()
-        this.getInfosUserDate()
     }
 
     async dateListDisplay() {
