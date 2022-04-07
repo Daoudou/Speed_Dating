@@ -17,10 +17,6 @@ class LoginController extends BaseController {
                 const login = await this.model.loginUsers({'email': emailLogin, 'password': passwordLogin})
                 if (!login) {
                     console.log('401')
-                    modalLoginError.style.display = "block"
-                    loginCloseBTNError.onclick = function () {
-                        modalLoginError.style.display = "none"
-                    }
                 } else {
                     modalLogin.style.display = "block"
                     loginCloseBTN.onclick = function () {

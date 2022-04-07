@@ -15,6 +15,7 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:firstName', async (req, res) => {
+
     const foundUser = await User.findAll({
         where: {
             firstName: req.params.firstName
@@ -37,8 +38,9 @@ router.post('/login', body('email').notEmpty(), body('password').notEmpty(), asy
         })
         if (!userLogin) {
             throw new Error('User not found')
-        }
+            res.status(400).end()
 
+        }
         const passwordVALID = bcrypt.compareSync(req.body.password, userLogin.password)
         if (passwordVALID) {
             const token = jwt.sign(
@@ -47,7 +49,6 @@ router.post('/login', body('email').notEmpty(), body('password').notEmpty(), asy
             )
             return res.send(token)
             console.log(token)
-
         } else {
             res.status(400).send('password invalid')
         }

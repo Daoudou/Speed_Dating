@@ -10,16 +10,18 @@ router.get('/infos', async(req,res)=>{
     res.send(infos)
 })
 
-router.post('/infosAdd',body('firstName'),body('lastName'),body('sexe'),async (req,res)=>{
+router.post('/infosAdd',body('firstName'),body('lastName'),body('sexe'),body('birthdate'),async (req,res)=>{
     try {
         validateBody(req)
         const infos = await Infos.create({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
-            sexe: req.body.sexe
+            sexe: req.body.sexe,
+            birthdate: req.body.birthdate
         })
-        console.log(infos.id)
-        res.status(201).send('Infos ajouter avec succe').end()
+        //console.log(infos.id)
+        res.status(201)
+        return res.send(infos.id).end()
     }catch (e) {
         console.error(e)
         return {error : "Echec lors de l'ajout"}

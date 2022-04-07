@@ -13,8 +13,7 @@ class RegisterController extends BaseController {
         const sexeRegister = $("#registerSexe").value
         const dateRegister = $("#registerDate").value
         const registerModalConfirm = $("#registerModalConfirm")
-        const registerModalBtnClose = $("#registerModalBtnClose")
-       try {
+        try {
            let msg;
            const str = $("#registerPassword").value
            if (str.match(/[0-9]/g) && str.match(/[A-Z]/g) && str.match(/[a-z]/g) && str.match(/[^a-zA-Z\d]/g) && str.length >=5){
@@ -33,13 +32,11 @@ class RegisterController extends BaseController {
                    console.log('401')
                } else {
                    console.log('201')
-                   registerModalConfirm.style.display = "block"
-                   registerModalBtnClose.onclick = function () {
-                       registerModalConfirm.style.display = "none"
-                   }
+                   navigate('accueil')
                }
            } else {
                msg = "<p style='color: red'>Mot de passe faible.</p>"
+               navigate('index')
            }
            document.getElementById("msg").innerHTML = msg
        }catch (e){

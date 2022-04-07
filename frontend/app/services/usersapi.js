@@ -3,16 +3,18 @@ class userApi{
         this.api = "http://localhost:3000"
     }
 
+AddTokenHeader(jwt){
+    return new Headers({'Accept'        : 'application/json',
+                           'Authorization' : 'Bearer ' + jwt,
+    'Content-Type'  : 'application/json'})
+}
 
     myFetch(url, body){
        // console.log(`userApi.myFetch(${this.api}/${url}, ${JSON.stringify(body)})`)
         return new Promise(((resolve, reject) =>{
             fetch(`${this.api}/${url}`,{
                 method: 'POST',
-                headers: {
-                    'Accept' : 'application/json',
-                    'Content-Type': 'application/json'
-                },
+                headers: this.AddTokenHeader(sessionStorage.getItem('Auth')),
                 body: JSON.stringify(body)
             })
                 .then(async response => {
@@ -51,12 +53,16 @@ class userApi{
         return this.myFetch(`users/login`,body)
     }
 
-    createDateInfos(body){
+    createPersonneInfos(body){
         return this.myFetch(`infos/infosAdd`,body)
     }
 
     createDate(body){
         return this.myFetch(`dating/datingAdd`,body)
+    }
+
+    getInfos(){
+        return this.myFetchGet('infos/infos')
     }
 
 }

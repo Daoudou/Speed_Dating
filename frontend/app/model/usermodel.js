@@ -3,39 +3,48 @@ class Usermodel {
         this.api = new userApi()
     }
 
-    async createUsers(body){
+    async createUsers(body) {
         try {
             return await this.api.createUsers(body)
-        } catch (e){
+        } catch (e) {
             console.error(e)
             return {error: 'Echec de la creation'}
         }
     }
 
-    async loginUsers(body){
+    async loginUsers(body) {
         try {
             return await this.api.loginUsers(body)
         } catch (e) {
             console.error(e)
-            return {error : 'Echec de login'}
+            return {error: 'Echec de login'}
         }
     }
 
-    async createDateInfos(body){
+    async createPersonneInfos(body) {
         try {
-            return await this.api.createDateInfos(body)
-        }catch (e) {
+            return await this.api.createPersonneInfos(body)
+        } catch (e) {
             console.error(e)
             return {error: 'Echec lors de l\'ajout du date'}
         }
     }
 
-    async createDate(body){
+    async createDate(body) {
         try {
             return await this.api.createDate(body)
-        }catch (e) {
+        } catch (e) {
             console.error(e)
             return {error: 'Echec de l\'ajout des infos de rencontre'}
+        }
+    }
+
+    async getInfos(){
+        try {
+            return await this.api.getInfos()
+        }catch (e){
+            console.error(e)
+            return {error: 'Echec de la recup des infos'}
         }
     }
 

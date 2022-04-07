@@ -2,23 +2,26 @@
     <div class="form-container log-in-container">
            <div class="formConnected">
                <h1>Connexion</h1>
-               <input id="loginEmail" type="email" placeholder="Email" required>
-               <input id="loginPassword" type="password" placeholder="Password" required>
+               <input class="form-control" id="loginEmail" type="email" placeholder="Email" required>
+               <input class="form-control" id="loginPassword" type="password" placeholder="Password" required>
                <a href="#">Mot de passe oublié ?</a>
                <a href="#" onclick="navigate('register')">Vous n'avez pas de compte ?</a>
                <button id="btnLogin" class="btn btn-secondary" data-toggle="modal" data-target="#loginModal" onclick="loginController.loginUsers()" >Log In</button>
+               <button id="btnReturn" class="btn btn-secondary" onclick="navigate('index')">Annuler</button>
            </div>
     </div>
 </div>
 
-<div id="loginModal" class="modal" tabindex="-1" role="dialog" >
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <p>Utilisateur connecté.</p>
-            </div>
-            <div class="modal-footer">
-                <button id="loginModalBtnClose" type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+<div class="form-group">
+    <div id="loginModal" class="modal" tabindex="-1" role="dialog" >
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p id="textModal">Utilisateur connecté.</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="loginModalBtnClose" type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                </div>
             </div>
         </div>
     </div>
