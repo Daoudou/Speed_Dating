@@ -23,20 +23,23 @@ class DatingListPersonnal extends BaseController {
                    <div class="col-md-1 col-sm-12">
                            ${infos.lastName}
                    </div> 
-                   <div class="col-md-1 col-sm-12">
+                   <div class="col-md-2 col-sm-12">
                            ${infos.birthdate}
                    </div> 
                    <div class="col-md-1 col-sm-12">
                             ${infos.sexe}
                    </div> 
-                   <div class="col-md-1 col-sm-12">
+                   <div class="col-md-2 col-sm-12">
                             ${dateKey.dateDating}
                    </div> 
-                   <div class="col-md-1 col-sm-12">
+                   <div class="col-md-2 col-sm-12">
                             ${dateKey.note}
                    </div> 
                    <div class="col-md-1 col-sm-12">
                             ${dateKey.comment}
+                   </div> 
+                   <div class="col-md-1 col-sm-12">
+                        <button onclick="this.removeListDate(${dateKey.id})">Supprimer</button>
                    </div>   
             </div>
             </li>`
@@ -45,6 +48,11 @@ class DatingListPersonnal extends BaseController {
             console.error(e)
             return {error: 'sa narche pas'}
         }
+    }
+
+    async removeListDate(id){
+        const deleteDateList = this.model.deleteDateList(id)
+        return deleteDateList
     }
 }
 

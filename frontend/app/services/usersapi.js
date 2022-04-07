@@ -44,6 +44,23 @@ AddTokenHeader(jwt){
         })
     }
 
+    myFetchDelete(url){
+        // console.log(`userApi.myFetch(${this.api}/${url}, ${JSON.stringify(body)})`)
+        return new Promise(((resolve, reject) =>{
+            fetch(`${this.api}/${url}`,{
+                method: 'DELETE',
+                headers: this.AddTokenHeader(sessionStorage.getItem('Auth')),
+            })
+                .then(async response => {
+                    if (response.status !== 200) {
+                        reject(await response.text())
+                    } else {
+                        resolve(response.text())
+                    }
+                })
+                .catch(error => reject(error))
+        }))
+    }
 
     createUsers(body){
         return this.myFetch(`users/create`,body)
@@ -75,6 +92,10 @@ AddTokenHeader(jwt){
 
     getUser(id){
         return this.myFetchGet(`users/usersId/${id}`)
+    }
+
+    deleteDateList(id){
+        return this.myFetchDelete(`dating/deleteDate/${id}`)
     }
 
 }

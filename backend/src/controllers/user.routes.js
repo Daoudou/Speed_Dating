@@ -38,9 +38,7 @@ router.post('/login', body('email').notEmpty(), body('password').notEmpty(), asy
             }
         })
         if (!userLogin) {
-            throw new Error('User not found')
             res.status(400).end()
-
         }else{
             const passwordVALID = bcrypt.compareSync(req.body.password, userLogin.password)
             if (passwordVALID) {
@@ -49,7 +47,6 @@ router.post('/login', body('email').notEmpty(), body('password').notEmpty(), asy
                     'abcdefghijklmnoqrstuvxyzABSCDEFGHIJKLMNOPQRSTUVWXYZ'
                 )
                 return res.send(token)
-                console.log(token)
             } else {
                 res.status(400).send('password invalid').end()
             }

@@ -35,5 +35,18 @@ router.post('/datingAdd', async (req, res) => {
     }
 })
 
+router.delete('/deleteDate/:id',async (req,res)=>{
+    try {
+        const datingDelete = await Dating.destroy({
+            where:{
+                id: req.params.id
+            }
+        })
+        res.status(200).send('Date supprimer').end()
+    }catch (e) {
+        console.error(e)
+        return {error: 'Delete Date error'}
+    }
+})
 
 exports.initializeRoutes = () => router;

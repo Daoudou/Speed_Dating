@@ -75,4 +75,13 @@ class Usermodel {
         }
     }
 
+    async deleteDateList(id){
+        try {
+            return await this.api.deleteDateList(id)
+        }catch (e){
+            console.error(e)
+            return {error: 'Delete error'}
+        }
+    }
+
 }
