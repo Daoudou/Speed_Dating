@@ -9,13 +9,19 @@ class LoginController extends BaseController {
             const passwordLogin = $("#loginPassword").value
             const modalLogin = $("#loginModal")
             const loginCloseBTN = $("#loginModalBtnClose")
-            console.log(emailLogin)
-            console.log(passwordLogin)
+            const modalLoginError = $("#loginModalError")
+            const modalLoginErrorBtnClose = $("#loginModalErrorBtnClose")
+
+        if (emailLogin !== undefined && passwordLogin !== undefined){
             try {
                 const login = await this.model.loginUsers({'email': emailLogin, 'password': passwordLogin})
                 if (!login) {
                     console.log('401')
-                    navigate('index')
+                    modalLoginError.style.display = "block"
+                    modalLoginErrorBtnClose.onclick = function () {
+                        modalLoginError.style.display = "none"
+                        navigate('index')
+                    }
                 } else {
                     modalLogin.style.display = "block"
                     loginCloseBTN.onclick = function () {
@@ -30,9 +36,10 @@ class LoginController extends BaseController {
                 console.error(e)
             }
 
-        window.onclick = function (event) {
-            if (event.target === modalLogin){
-                modalLogin.style.display = "none"
+            window.onclick = function (event) {
+                if (event.target === modalLogin){
+                    modalLogin.style.display = "none"
+                }
             }
         }
     }

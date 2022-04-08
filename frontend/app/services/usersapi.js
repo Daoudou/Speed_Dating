@@ -32,7 +32,7 @@ AddTokenHeader(jwt){
         return new Promise((resolve, reject) => {
             fetch(`${this.api}/${url}`)
                 .then(r => {
-                    if (r.status !== 200) {
+                    if (r.status !==200) {
                         reject(r.status)
                     } else {
                         resolve(r.json())

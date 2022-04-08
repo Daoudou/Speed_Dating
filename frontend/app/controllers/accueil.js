@@ -39,6 +39,8 @@ class AccueilController extends BaseController {
         const comment = $("#commentModalList").value
         const token = sessionStorage.getItem('Auth')
         const select = $("#datingSelect").value
+        const dateModal = $("#addDateListModal")
+        const dateModalBtnCloe = $("#dateModalBtnClose")
         try {
             console.log(select)
             const dateList = await this.model.createDate({
@@ -52,6 +54,10 @@ class AccueilController extends BaseController {
                 console.log(401 + 'Echec de l\'ajout dans les dates')
             } else {
                 console.log(201 + 'Ajout dans les rencontres')
+                dateModal.style.display = "block"
+                dateModalBtnCloe.onclick = function () {
+                    dateModal.style.display = "none"
+                }
             }
         } catch (e) {
             console.error(e)
@@ -64,6 +70,8 @@ class AccueilController extends BaseController {
         const lastNamePersonne = $("#lastNamePersonneModalList").value
         const sexePersonne = $("#sexePersonneModalList").value
         const dateNaissancePersonne = $("#birthdatePersonneRencontre").value
+        const personneModal = $("#AddPersonneListModal")
+        const personnalModalBtn = $("#personneAddModalBtnClose")
         try {
             const addPersonne = await this.model.createPersonneInfos({
                 'firstName': firstNamePersonne,
@@ -75,6 +83,10 @@ class AccueilController extends BaseController {
                 console.log(401 + ' ' + 'Echec de l\'ajout de la personne')
             } else {
                 console.log(201 + ' ' + 'Personne ajouter')
+                personneModal.style.display = "block"
+                personnalModalBtn.onclick = function () {
+                    personneModal.style.display = "none"
+                }
             }
         } catch (e) {
             console.error(e)

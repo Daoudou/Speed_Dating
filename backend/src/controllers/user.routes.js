@@ -38,13 +38,13 @@ router.post('/login', body('email').notEmpty(), body('password').notEmpty(), asy
             }
         })
         if (!userLogin) {
-            res.status(400).end()
+           return res.status(400).end()
         }else{
             const passwordVALID = bcrypt.compareSync(req.body.password, userLogin.password)
             if (passwordVALID) {
                 const token = jwt.sign(
                     {id: userLogin.id, email: userLogin.email, password: userLogin.password},
-                    'abcdefghijklmnoqrstuvxyzABSCDEFGHIJKLMNOPQRSTUVWXYZ'
+                    'Cettenaufragéen\'entourepaslaraisonduplusfort.'
                 )
                 return res.send(token)
             } else {

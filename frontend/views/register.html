@@ -2,17 +2,18 @@
     <div class="form-container log-in-container">
         <div class="formConnected" >
             <h1>Inscription</h1>
-            <input id="registerfirstName" type="text" placeholder="Nom" required >
-            <input id="registerlastName" type="text" placeholder="Prenom" required>
-            <input id="registerPseudo" type="text" placeholder="Pseudo" required>
-            <input id="registerEmail" type="email" placeholder="Email" required/>
-            <input id="registerPassword" type="password" placeholder="Mot de passe" required/>
+            <input class="form-control" id="registerfirstName" type="text" placeholder="Nom" required >
+            <input class="form-control" id="registerlastName" type="text" placeholder="Prenom" required>
+            <input class="form-control" id="registerPseudo" type="text" placeholder="Pseudo" required>
+            <input class="form-control" id="registerEmail" type="email" placeholder="Email" required/>
+            <input class="form-control mb-3" id="registerPassword" type="password" placeholder="Mot de passe" required/>
             <label>Mot de passe : minimum 5 caractère : 1 caractère special, 1 majuscule, 1 minuscule, 1 chiffre</label>
             <span id="msg"></span>
-            <input id="registerSexe" type="text" placeholder="Sexe" required>
-            <input id="registerDate" type="date" required>
-            <a href="#" onclick="navigate('login')" >Vous avez deja un compte valide ?</a>
-            <button class="btn btn-secondary" onclick="registerController.createUsers()" >Creer un compte</button>
+            <input class="form-control mb-3" id="registerSexe"  type="text" placeholder="Sexe" required>
+            <label class="">Date de naissance</label>
+            <input class="form-control mb-3" id="registerDate" type="date" required>
+            <a href="#" class="mb-3" onclick="navigate('login')" >Vous avez deja un compte valide ?</a>
+            <button class="btn btn-secondary" onclick="registerController.createUsers()" >Créer un compte</button>
             <button class="btn btn-secondary" onclick="navigate('index')">Retour</button>
         </div>
     </div>
@@ -22,7 +23,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <p>Utilisateur créer avec succé.</p>
+                <p>Utilisateur créer avec succès.</p>
             </div>
             <div class="modal-footer">
                 <button id="registerModalBtnClose" type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
