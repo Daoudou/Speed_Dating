@@ -23,9 +23,6 @@ class DatingListPersonnal extends BaseController {
                    <div class="col-md-1 col-sm-12">
                            ${infos.lastName}
                    </div> 
-                   <div class="col-md-2 col-sm-12">
-                           ${infos.birthdate}
-                   </div> 
                    <div class="col-md-1 col-sm-12">
                             ${infos.sexe}
                    </div> 
