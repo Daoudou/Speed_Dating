@@ -1,27 +1,24 @@
-<div class="container">
-    <h3 class="mb-3">Liste de rencontre personnel</h3>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-1 col-sm-12 ">
-                <h6>Nom:</h6>
-            </div>
-            <div class="col-md-1 col-sm-12 ">
-                <h6>Prenom :</h6>
-            </div>
-            <div class="col-md-1 col-sm-12">
-                <h6>Sexe :</h6>
-            </div>
-            <div class="col-md-2 col-sm-12 ">
-                <h6>Date de rencontre :</h6>
-            </div>
-            <div class="col-md-1 col-sm-12 ">
-                <h6>Note :</h6>
-            </div>
-            <div class="col-md-2 col-sm-12 ">
-                <h6>Commentaire :</h6>
-            </div>
-        </div>
-        <ul class="list-group" id="listDate"></ul>
-        <button type="button" class="btn btn-secondary" onclick="navigate('accueil')">Retour</button>
-    </div>
+<div class="table-responsive">Liste de rencontre personnel
+    <table class="table table-dark align-middle">
+        <thead>
+        <table>
+            <tr>
+                <th class="mr-3 i" scope="col">Nom:</th>
+                <th class="mr-3 i" scope="col">Prenom:</th>
+                <th class="mr-3 i" scope="col">Sexe:</th>
+                <th class="mr-3 iDate" scope="col">Date de rencontre</th>
+                <th class="mr-3 i" scope="col">Note:</th>
+                <th class="mr-3 i" scope="col">Commentaire:</th>
+            </tr>
+        </table>
+        </thead>
+        <tbody id="bodyListDate">
+        <table id="ListDateTable">
+
+        </table>
+            <ul class="list-group" id="listDate"></ul>
+        </tbody>
+    </table>
+    <button type="button" class="btn btn-secondary" onclick="navigate('accueil')">Retour</button>
 </div>
+

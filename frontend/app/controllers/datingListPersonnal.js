@@ -11,35 +11,20 @@ class DatingListPersonnal extends BaseController {
         try {
             const date = await this.model.getDates()
             console.log(date)
-            const dateList = $("#listDate")
+            const dateList = $("#ListDateTable")
             for (const dateKey of date) {
                 //const user = this.model.getUser(dateKey.UserId)
                 const infos = await this.model.getInfos(dateKey.InfoId)
                 console.log(dateKey.InfoId)
-                dateList.innerHTML += `<li class="list-group-item"><div class="row">
-                   <div class="col-md-1 col-sm-12">
-                          ${infos.firstName} 
-                   </div> 
-                   <div class="col-md-1 col-sm-12">
-                           ${infos.lastName}
-                   </div> 
-                   <div class="col-md-1 col-sm-12">
-                            ${infos.sexe}
-                   </div> 
-                   <div class="col-md-2 col-sm-12">
-                            ${dateKey.dateDating}
-                   </div> 
-                   <div class="col-md-2 col-sm-12">
-                            ${dateKey.note}
-                   </div> 
-                   <div class="col-md-1 col-sm-12">
-                            ${dateKey.comment}
-                   </div> 
-                   <div class="col-md-1 col-sm-12">
-                        <button onclick="this.removeListDate(${dateKey.id})">Supprimer</button>
-                   </div>   
-            </div>
-            </li>`
+                dateList.innerHTML += `<tr>
+                <td class="mr-3" scope="col"> ${infos.firstName} </td>
+                <td class="mr-3" scope="col"> ${infos.lastName} </td>
+                <td class="mr-3" scope="col"> ${infos.sexe} </td>
+                <td class="mr-3" scope="col"> ${new Date(dateKey.dateDating).toUTCString()} </td>
+                <td class="mr-3" scope="col"> ${dateKey.note} </td>
+                <td class="mr-3" scope="col"> ${dateKey.comment} </td>
+                <td class="mr-3" scope="col"><button>Supprimer</button></td>
+            </tr>`
             }
         } catch (e) {
             console.error(e)

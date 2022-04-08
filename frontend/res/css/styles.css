@@ -24,4 +24,9 @@ a{
 h1{
     color: red;
 }
+table, th, td {
+    padding-right: 30px;
+
+}
+
 
