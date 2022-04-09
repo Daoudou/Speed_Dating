@@ -58,19 +58,18 @@ router.post('/datingAdd',
     })
 
 
-router.put('/',
+router.put('/:id',
     body('dateDating').isString().notEmpty(),
     body('note').isString().notEmpty(),
     async (req, res) => {
         try {
             await Dating.update({
-                InfoId: req.body.InfoId,
                 dateDating: req.body.dateDating,
                 comment: req.body.comment,
                 note: parseInt(req.body.note),
             }, {
                 where: {
-                    id: req.body.id
+                    id: req.params.id
                 }
             })
             res.status(200).send('Rencontre mise a jour')

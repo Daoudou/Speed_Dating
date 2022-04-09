@@ -29,14 +29,29 @@
                 <h1>Mettre a jour la list</h1>
             </div>
             <div class="modal-body">
-                <input id="firstNameUpdateDateModalList" type="text" placeholder="Nom">
-                <input id="lastNameUpdateDateModalList" type="text" placeholder="Prenom">
-                <input id="sexeUpdateDateModalList" type="text" placeholder="Sexe">
+<!--                <input id="firstNameUpdateDateModalList" type="text" placeholder="Nom">-->
+<!--                <input id="lastNameUpdateDateModalList" type="text" placeholder="Prenom">-->
+<!--                <input id="sexeUpdateDateModalList" type="text" placeholder="Sexe">-->
                 <label>Date de rencontre</label>
                 <input id="birthdateUpdateDateRencontre" type="date">
+                <input id="commentUpdateDateModalList" type="text" placeholder="Commentaire">
+                <label class="mb-3">Note</label>
+                <select class="mb-3" id="noteDateUpdate" name="note">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
             </div>
             <div class="modal-footer">
-                <button id="UpdateDateModalBtnClose" type="button" class="btn btn-secondary" data-dismiss="modal"
+                <button id="UpdateDateModalBtnClose" type="button" class="btn btn-secondary" data-dismiss="modal" onclick="datingListPersonnalController.updateListDate()"
                         >Mettre a jour
                 </button>
                 <button id="UpdateDateCancel" type="button" class="btn btn-secondary" data-dismiss="modal">

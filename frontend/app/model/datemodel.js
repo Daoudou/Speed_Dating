@@ -39,5 +39,12 @@ class Datemodel {
         }
     }
 
-
+    async updateDateList(id,body){
+        try {
+            return await this.api.updateDateList(id,body)
+        } catch (e) {
+            console.error(e)
+            return {error: 'Echec de la mise a jour de la liste des rencontre'}
+        }
+    }
 }

@@ -44,12 +44,13 @@ class datesApi {
         })
     }
 
-    myFetchUpdate(url){
+    myFetchUpdate(url,body){
         // console.log(`userApi.myFetch(${this.api}/${url}, ${JSON.stringify(body)})`)
         return new Promise(((resolve, reject) =>{
             fetch(`${this.api}/${url}`,{
                 method: 'PUT',
-                //headers: this.AddTokenHeader(sessionStorage.getItem('Auth')),
+                headers: this.AddTokenHeader(sessionStorage.getItem('Auth')),
+                body: JSON.stringify(body)
             })
                 .then(async response => {
                     if (response.status !== 200) {
@@ -95,6 +96,10 @@ class datesApi {
 
     deleteDateList(id){
         return this.myFetchDelete(`dating/deleteDate/${id}`)
+    }
+
+    updateDateList(id,body){
+        return this.myFetchUpdate(`dating/${id}`,body)
     }
 
 }
