@@ -1,16 +1,16 @@
-class userApi{
+class infosApi {
     constructor() {
         this.api = "http://localhost:3000"
     }
 
-AddTokenHeader(jwt){
-    return new Headers({'Accept'        : 'application/json',
-                           'Authorization' : 'Bearer ' + jwt,
-    'Content-Type'  : 'application/json'})
-}
+    AddTokenHeader(jwt){
+        return new Headers({'Accept'        : 'application/json',
+            'Authorization' : 'Bearer ' + jwt,
+            'Content-Type'  : 'application/json'})
+    }
 
-    myFetch(url, body){
-       // console.log(`userApi.myFetch(${this.api}/${url}, ${JSON.stringify(body)})`)
+    myFetchInfosPost(url, body){
+        // console.log(`userApi.myFetch(${this.api}/${url}, ${JSON.stringify(body)})`)
         return new Promise(((resolve, reject) =>{
             fetch(`${this.api}/${url}`,{
                 method: 'POST',
@@ -28,7 +28,7 @@ AddTokenHeader(jwt){
         }))
     }
 
-    async myFetchGet(url) {
+    async myFetchInfosGet(url) {
         return new Promise((resolve, reject) => {
             fetch(`${this.api}/${url}`)
                 .then(r => {
@@ -44,20 +44,16 @@ AddTokenHeader(jwt){
         })
     }
 
-    createUsers(body){
-        return this.myFetch(`users/create`,body)
+    createPersonneInfos(body){
+        return this.myFetchInfosPost(`infos/infosAdd`,body)
     }
 
-    loginUsers(body){
-        return this.myFetch(`users/login`,body)
+    getInfos(id){
+        return this.myFetchInfosGet(`infos/infoId/${id}`)
     }
 
-    getUser(id){
-        return this.myFetchGet(`users/usersId/${id}`)
+    getInfosList(){
+        return this.myFetchInfosGet('infos/infos')
     }
-
-
-
-
 
 }

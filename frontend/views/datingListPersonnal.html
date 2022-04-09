@@ -19,6 +19,31 @@
             <ul class="list-group" id="listDate"></ul>
         </tbody>
     </table>
-    <button type="button" class="btn btn-secondary" onclick="navigate('accueil')">Retour</button>
+    <button type="button" class="btn btn-secondary pt-3" onclick="navigate('accueil')">Retour</button>
+</div>
+
+<div id="addUpdateDateModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1>Mettre a jour la list</h1>
+            </div>
+            <div class="modal-body">
+                <input id="firstNameUpdateDateModalList" type="text" placeholder="Nom">
+                <input id="lastNameUpdateDateModalList" type="text" placeholder="Prenom">
+                <input id="sexeUpdateDateModalList" type="text" placeholder="Sexe">
+                <label>Date de rencontre</label>
+                <input id="birthdateUpdateDateRencontre" type="date">
+            </div>
+            <div class="modal-footer">
+                <button id="UpdateDateModalBtnClose" type="button" class="btn btn-secondary" data-dismiss="modal"
+                        >Mettre a jour
+                </button>
+                <button id="UpdateDateCancel" type="button" class="btn btn-secondary" data-dismiss="modal">
+                    Annuler
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
 

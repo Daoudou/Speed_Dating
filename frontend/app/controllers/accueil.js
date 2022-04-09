@@ -2,6 +2,8 @@ class AccueilController extends BaseController {
     constructor() {
         super();
         this.model = new Usermodel()
+        this.modelDate = new Datemodel()
+        this.modelInfo = new Infosmodel()
     }
 
     async dateListDisplay() {
@@ -43,7 +45,7 @@ class AccueilController extends BaseController {
         const dateModalBtnCloe = $("#dateModalBtnClose")
         try {
             console.log(select)
-            const dateList = await this.model.createDate({
+            const dateList = await this.modelDate.createDate({
                 'dateDating': dateRencontre,
                 'comment': comment,
                 'note': note,
@@ -73,7 +75,7 @@ class AccueilController extends BaseController {
         const personneModal = $("#AddPersonneListModal")
         const personnalModalBtn = $("#personneAddModalBtnClose")
         try {
-            const addPersonne = await this.model.createPersonneInfos({
+            const addPersonne = await this.modelInfo.createPersonneInfos({
                 'firstName': firstNamePersonne,
                 'lastName': lastNamePersonne,
                 'sexe': sexePersonne,
@@ -95,7 +97,7 @@ class AccueilController extends BaseController {
     }
 
     async getInfosUserDate(){
-        const infos = await this.model.getInfosList()
+        const infos = await this.modelInfo.getInfosList()
         const select = $("#datingSelect")
         for (const infosKey in infos){
             select.innerHTML +=`<option value="${infos[infosKey].id}">${infos[infosKey].firstName} ${infos[infosKey].lastName}</option>`

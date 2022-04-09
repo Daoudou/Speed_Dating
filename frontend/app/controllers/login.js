@@ -5,14 +5,14 @@ class LoginController extends BaseController {
     }
 
     async loginUsers() {
-            const emailLogin = $("#loginEmail").value
-            const passwordLogin = $("#loginPassword").value
-            const modalLogin = $("#loginModal")
-            const loginCloseBTN = $("#loginModalBtnClose")
-            const modalLoginError = $("#loginModalError")
-            const modalLoginErrorBtnClose = $("#loginModalErrorBtnClose")
+        const emailLogin = $("#loginEmail").value
+        const passwordLogin = $("#loginPassword").value
+        const modalLogin = $("#loginModal")
+        const loginCloseBTN = $("#loginModalBtnClose")
+        const modalLoginError = $("#loginModalError")
+        const modalLoginErrorBtnClose = $("#loginModalErrorBtnClose")
 
-        if (emailLogin !== undefined && passwordLogin !== undefined){
+        if (emailLogin !== undefined && passwordLogin !== undefined) {
             try {
                 const login = await this.model.loginUsers({'email': emailLogin, 'password': passwordLogin})
                 if (!login) {
@@ -23,21 +23,21 @@ class LoginController extends BaseController {
                         navigate('index')
                     }
                 } else {
+                    console.log('201')
                     modalLogin.style.display = "block"
                     loginCloseBTN.onclick = function () {
                         modalLogin.style.display = "none"
                         navigate('accueil')
+                        sessionStorage.setItem('Auth', JSON.stringify(login))
                     }
-                    console.log('201')
                     console.log(login)
-                    sessionStorage.setItem('Auth',JSON.stringify(login))
                 }
-            }   catch (e) {
+            } catch (e) {
                 console.error(e)
             }
 
             window.onclick = function (event) {
-                if (event.target === modalLogin){
+                if (event.target === modalLogin) {
                     modalLogin.style.display = "none"
                 }
             }

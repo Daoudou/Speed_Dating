@@ -6,27 +6,48 @@
 </head>
 <body>
 <div class="row">
-    <div class="col-5">
+    <div class="col-6">
         <h1>Speed Dating Industries</h1>
     </div>
-    <div class="col-5">
+    <div class="col-6">
         <div id="buttonGroupAccueilLogger" class="btn-group" role="group" aria-label="Basic example">
             <div id="buttonAccueilLogger" class="buttonLog">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropDownMenu" data-bs-toggle="dropdown" aria-expanded="false">Ajout</button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a id="addButtonDateList" class="dropdown-item" onclick="acceuilController.getInfosUserDate();acceuilController.dateListDisplay();">Ajouter une rencontre</a></li>
-                        <li><a id="addButtonProfilDateList" class="dropdown-item" onclick="acceuilController.addPersonne();">Ajouter une Personne</a></li>
-                    </ul>
-                </div>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropDownMenuProfil" data-bs-toggle="dropdown" aria-expanded="false">Profil</button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" onclick="navigate('datingListPersonnal')">Liste de rencontre personnel</a></li>
-                        <li><a class="dropdown-item">Parametre</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" onclick="acceuilController.logOut();">Se d&eacute;connecter</a></li>
-                    </ul>
+                <div class="row">
+                    <div class="col-6 mr-5">
+                        <div>
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropDownMenu"
+                                    data-bs-toggle="dropdown" aria-expanded="false">Ajout
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a id="addButtonDateList" class="dropdown-item"
+                                       onclick="acceuilController.getInfosUserDate();acceuilController.dateListDisplay();">Ajouter
+                                    une rencontre</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a id="addButtonProfilDateList" class="dropdown-item"
+                                       onclick="acceuilController.addPersonne();">Ajouter une Personne</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropDownMenuProfil"
+                                    data-bs-toggle="dropdown" aria-expanded="false">Profil
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" onclick="navigate('datingListPersonnal')">Liste de
+                                    rencontre
+                                    personnel</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" onclick="acceuilController.logOut();">Se
+                                    d&eacute;connecter</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -35,8 +56,10 @@
 
 <div class="container">
     <div role="col-5">
-        <p>Bienveunue sur votre espce client. Nous vous prions de bien vouloir ajouter une personne a votre liste pour commencer.</p>
-        <p>Si vous n'avez pas ajouter de personne bien entendu. Sinon vous pouvez ajouter des rencontres en selectionnant les personnes que vous avez ajouter.</p>
+        <p>Bienvenue sur votre espace client. Nous vous prions de bien vouloir ajouter une personne a votre liste pour
+            commencer.</p>
+        <p>Si vous n'avez pas ajouté de personne bien entendu. Sinon vous pouvez ajouter des rencontres en selectionnant
+            les personnes que vous avez ajouter.</p>
     </div>
 </div>
 
@@ -47,26 +70,26 @@
                 <h1>Ajouter une rencontre a votre liste</h1>
             </div>
             <div class="modal-body">
-               <div class="row">
-                   <select class="mb-3" name="" id="datingSelect"></select>
-                   <label class="mb-3">Note</label>
-                   <select class="mb-3" id="noteDate" name="note">
-                       <option value="0">0</option>
-                       <option value="1">1</option>
-                       <option value="2">2</option>
-                       <option value="3">3</option>
-                       <option value="4">4</option>
-                       <option value="5">5</option>
-                       <option value="6">6</option>
-                       <option value="7">7</option>
-                       <option value="8">8</option>
-                       <option value="9">9</option>
-                       <option value="10">10</option>
-                   </select>
-                   <label class="mb-3">Date de la rencontre</label>
-                   <input class="mb-3" id="dateModalList" type="date">
-                   <input class="mb-3" id="commentModalList" type="text" placeholder="Commentaire">
-               </div>
+                <div class="row">
+                    <select class="mb-3" name="" id="datingSelect"></select>
+                    <label class="mb-3">Note</label>
+                    <select class="mb-3" id="noteDate" name="note">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                    <label class="mb-3">Date de la rencontre</label>
+                    <input class="mb-3" id="dateModalList" type="date" required>
+                    <input class="mb-3" id="commentModalList" type="text" placeholder="Commentaire" required>
+                </div>
             </div>
             <div class="modal-footer">
                 <button id="registerModalBtnClose" type="button" class="btn btn-secondary" data-dismiss="modal"
@@ -104,14 +127,15 @@
 </div>
 
 <div class="form-group col-sm-1 col-md-1">
-    <div id="addDateListModal" class="modal" tabindex="-1" role="dialog" >
+    <div id="addDateListModal" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-body">
                     <p id="textModal">Rencontre ajoutée.</p>
                 </div>
                 <div class="modal-footer">
-                    <button id="dateModalBtnClose" type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button id="dateModalBtnClose" type="button" class="btn btn-secondary" data-dismiss="modal">Fermer
+                    </button>
                 </div>
             </div>
         </div>
@@ -120,14 +144,16 @@
 
 
 <div class="form-group col-sm-1 col-md-1">
-    <div id="AddPersonneListModal" class="modal" tabindex="-1" role="dialog" >
+    <div id="AddPersonneListModal" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-body">
                     <p id="">Personne ajoutée.</p>
                 </div>
                 <div class="modal-footer">
-                    <button id="personneAddModalBtnClose" type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button id="personneAddModalBtnClose" type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Fermer
+                    </button>
                 </div>
             </div>
         </div>

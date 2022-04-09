@@ -11,23 +11,23 @@ router.get('/', async (req, res) => {
         console.log(dating.every(user => user instanceof Dating))
         res.send(dating)
         res.status(200)
-    } catch (e){
+    } catch (e) {
         res.status(500)
     }
 })
 
-router.get('/:id', async(req,res)=>{
+router.get('/:id', async (req, res) => {
     const dateIdUser = await Dating.findAll({
-        where:{
-            UserId: req.params.id
+        where: {
+            id: req.params.id
         }
     })
-    res.send(JSON.stringify(dateIdUser))
+    res.send(dateIdUser)
 })
 
-router.get('/:idRencontre',async (req,res)=>{
+router.get('/:idRencontre', async (req, res) => {
     const dateId = await Dating.findAll({
-        where:{
+        where: {
             id: req.params.idRencontre
         }
     })
@@ -40,62 +40,61 @@ router.post('/datingAdd',
     body('dateDating').isString().notEmpty(),
     body('note').isInt(),
     async (req, res) => {
-    validateBody(req)
-    try {
-        const token = jwtdecode(req.headers.authorization)
-        await Dating.create({
-            UserId: token.id,
-            InfoId: req.body.InfoId,
-            dateDating: req.body.dateDating,
-            comment: req.body.comment,
-            note: parseInt(req.body.note),
-        })
-        res.status(201).send('Infos de la rencontre ajouter').end()
-    } catch (e) {
-        console.error(e)
-        res.status(400).send('Erreur lors des infos sur les rencontres')
-    }
-})
+        validateBody(req)
+        try {
+            const token = jwtdecode(req.headers.authorization)
+            await Dating.create({
+                UserId: token.id,
+                InfoId: req.body.InfoId,
+                dateDating: req.body.dateDating,
+                comment: req.body.comment,
+                note: parseInt(req.body.note),
+            })
+            res.status(201).send('Infos de la rencontre ajouter').end()
+        } catch (e) {
+            console.error(e)
+            res.status(400).send('Erreur lors des infos sur les rencontres')
+        }
+    })
 
 
 router.put('/',
     body('dateDating').isString().notEmpty(),
     body('note').isString().notEmpty(),
-    async (req,res)=>{
-    try {
-        await Dating.update({
-            InfoId: req.body.InfoId,
-            dateDating: req.body.dateDating,
-            comment: req.body.comment,
-            note: parseInt(req.body.note),
-        },{
-            where:{
-                id: req.body.id
-            }
-        })
-        res.status(200).send('Rencontre mise a jour')
+    async (req, res) => {
+        try {
+            await Dating.update({
+                InfoId: req.body.InfoId,
+                dateDating: req.body.dateDating,
+                comment: req.body.comment,
+                note: parseInt(req.body.note),
+            }, {
+                where: {
+                    id: req.body.id
+                }
+            })
+            res.status(200).send('Rencontre mise a jour')
 
-    }catch (e) {
-        console.error(e)
-        res.status(400).send('Erreur lors de la mise a jour de la rencontre')
-    }
-})
+        } catch (e) {
+            console.error(e)
+            res.status(400).send('Erreur lors de la mise a jour de la rencontre')
+        }
+    })
 
-router.delete('/deleteDate/:id',async (req,res)=>{
+router.delete('/deleteDate/:id', async (req, res) => {
     try {
-       await Dating.destroy({
-            where:{
+        await Dating.destroy({
+            where: {
                 id: req.params.id
             }
         })
         res.status(204)
         res.send('Rencontre Supprimée')
-    }catch (e) {
+    } catch (e) {
         console.error(e)
         res.status(400).send('Erreur lors de la suppression')
     }
 })
-
 
 
 exports.initializeRoutes = () => router;
