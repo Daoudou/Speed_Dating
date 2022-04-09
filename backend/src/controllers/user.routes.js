@@ -59,24 +59,16 @@ router.post('/login', body('email').notEmpty(), body('password').notEmpty(), asy
 
 router.post(
     '/create',
-    body('firstName').notEmpty(),
-    body('lastName').notEmpty(),
     body('pseudo').notEmpty().isLength({min: 4}),
     body('email').notEmpty(),
     body('password').notEmpty().isLength({min: 5}),
-    body('sexe').notEmpty(),
-    body('birthdate').notEmpty(),
     async (req, res) => {
         try {
             validateBody(req);
             const utilisateur = await User.create({
-                firstName: req.body.firstName,
-                lastName: req.body.lastName,
                 pseudo: req.body.pseudo,
                 email: req.body.email,
                 password: bcrypt.hashSync(req.body.password, salt),
-                sexe: req.body.sexe,
-                birthdate: req.body.birthdate,
                 roles: 'MEMBER'
             });
             console.log(utilisateur.id);

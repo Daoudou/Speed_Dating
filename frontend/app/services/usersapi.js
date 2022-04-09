@@ -44,18 +44,18 @@ AddTokenHeader(jwt){
         })
     }
 
-    myFetchDelete(url){
+    myFetchDelete(url,token){
         // console.log(`userApi.myFetch(${this.api}/${url}, ${JSON.stringify(body)})`)
         return new Promise(((resolve, reject) =>{
             fetch(`${this.api}/${url}`,{
                 method: 'DELETE',
-                headers: this.AddTokenHeader(sessionStorage.getItem('Auth')),
+                headers: token = this.AddTokenHeader(sessionStorage.getItem('Auth')),
             })
                 .then(async response => {
                     if (response.status !== 200) {
-                        reject(await response.text())
+                        reject(response.status)
                     } else {
-                        resolve(response.text())
+                        resolve(await response.text())
                     }
                 })
                 .catch(error => reject(error))

@@ -4,49 +4,98 @@ const Dating = require('../models/dating.model')
 const {body} = require('express-validator');
 const {validateBody} = require("./validation/route.validator");
 const jwtdecode = require('jwt-decode')
-const infos = require('../models/infos.model')
-const jwt = require("jsonwebtoken");
 
 router.get('/', async (req, res) => {
-    const dating = await Dating.findAll()
-    console.log(dating.every(user => user instanceof Dating))
-    res.send(dating)
+    try {
+        const dating = await Dating.findAll()
+        console.log(dating.every(user => user instanceof Dating))
+        res.send(dating)
+        res.status(200)
+    } catch (e){
+        res.status(500)
+    }
 })
 
+router.get('/:id', async(req,res)=>{
+    const dateIdUser = await Dating.findAll({
+        where:{
+            UserId: req.params.id
+        }
+    })
+    res.send(JSON.stringify(dateIdUser))
+})
 
+router.get('/:idRencontre',async (req,res)=>{
+    const dateId = await Dating.findAll({
+        where:{
+            id: req.params.idRencontre
+        }
+    })
+    res.send(JSON.stringify(dateId))
+})
 
-router.post('/datingAdd', async (req, res) => {
-
+router.post('/datingAdd',
+    //body('UserId').isString().notEmpty(),
+    body('InfoId').isString().notEmpty(),
+    body('dateDating').isString().notEmpty(),
+    body('note').isInt(),
+    async (req, res) => {
+    validateBody(req)
     try {
-        //validateBody(req)
         const token = jwtdecode(req.headers.authorization)
-        console.log(token.id)
-        const dating = await Dating.create({
+        await Dating.create({
+            UserId: token.id,
+            InfoId: req.body.InfoId,
             dateDating: req.body.dateDating,
             comment: req.body.comment,
             note: parseInt(req.body.note),
-            UserId: token.id,
-            InfoId: req.body.InfoId
         })
         res.status(201).send('Infos de la rencontre ajouter').end()
     } catch (e) {
         console.error(e)
-        return {error: 'Erreur lors des infos sur les rencontres'}
+        res.status(400).send('Erreur lors des infos sur les rencontres')
+    }
+})
+
+
+router.put('/',
+    body('dateDating').isString().notEmpty(),
+    body('note').isString().notEmpty(),
+    async (req,res)=>{
+    try {
+        await Dating.update({
+            InfoId: req.body.InfoId,
+            dateDating: req.body.dateDating,
+            comment: req.body.comment,
+            note: parseInt(req.body.note),
+        },{
+            where:{
+                id: req.body.id
+            }
+        })
+        res.status(200).send('Rencontre mise a jour')
+
+    }catch (e) {
+        console.error(e)
+        res.status(400).send('Erreur lors de la mise a jour de la rencontre')
     }
 })
 
 router.delete('/deleteDate/:id',async (req,res)=>{
     try {
-        const datingDelete = await Dating.destroy({
+       await Dating.destroy({
             where:{
                 id: req.params.id
             }
         })
-        res.status(200).send('Date supprimer').end()
+        res.status(204)
+        res.send('Rencontre Supprimée')
     }catch (e) {
         console.error(e)
-        return {error: 'Delete Date error'}
+        res.status(400).send('Erreur lors de la suppression')
     }
 })
+
+
 
 exports.initializeRoutes = () => router;

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$USER_HOME$/Downloads/ProjetJs-NodeJs-Development/ProjetJs-NodeJs-Development/.idea/ProjetJs-NodeJs-Development.iml" filepath="$USER_HOME$/Downloads/ProjetJs-NodeJs-Development/ProjetJs-NodeJs-Development/.idea/ProjetJs-NodeJs-Development.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/SpeedDating.iml" filepath="$PROJECT_DIR$/.idea/SpeedDating.iml" />
     </modules>
   </component>
