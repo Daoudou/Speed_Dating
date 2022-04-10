@@ -16,17 +16,20 @@ class DatingListPersonnal extends BaseController {
             const dateList = $("#ListDateTable")
             for (const dateKey of date) {
                 //const user = this.model.getUser(dateKey.UserId)
-                const infos = await this.modelInfos.getInfos(dateKey.InfoId)
-                dateList.innerHTML += `<tr id="datingListTr_${dateKey.id}">
+                const dateListPersonnal = await this.modelDate.getDateById(dateKey.UserId)
+                for (const dateKeyList of dateListPersonnal){
+                    const infos = await this.modelInfos.getInfos(dateKey.InfoId)
+                    dateList.innerHTML += `<tr id="datingListTr_${dateKey.id}">
                 <td class="mr-3" scope="col"> ${infos.firstName} </td>
                 <td class="mr-3" scope="col"> ${infos.lastName} </td>
                 <td class="mr-3" scope="col"> ${infos.sexe} </td>
-                <td class="mr-3" scope="col"> ${dateKey.dateDating} </td>
-                <td class="mr-3" scope="col"> ${dateKey.note} </td>
-                <td class="pr-5" scope="col"> ${dateKey.comment}</td>
+                <td class="mr-3" scope="col"> ${dateKeyList.dateDating} </td>
+                <td class="mr-3" scope="col"> ${dateKeyList.note} </td>
+                <td class="pr-5" scope="col"> ${dateKeyList.comment}</td>
                 <td class="pr-5"><button type="button" class="btn btn-secondary" onclick="datingListPersonnalController.displayListupdateDateList()">Mettre a jour</button></td>
                 <td class="mr-3"><button type="button" class="btn btn-secondary" onclick="datingListPersonnalController.removeListDate('${dateKey.id}')">Supprimer</button></td>
                </tr>`
+                }
             }
         } catch (e) {
             console.error(e)

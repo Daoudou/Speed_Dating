@@ -25,6 +25,15 @@ router.get('/:id', async (req, res) => {
     res.send(dateIdUser)
 })
 
+router.get('/userDateId/:id', async (req,res)=>{
+    const dateById = await Dating.findAll({
+        where:{
+            UserId: req.params.id
+        }
+    })
+    res.send(dateById)
+})
+
 router.get('/:idRencontre', async (req, res) => {
     const dateId = await Dating.findAll({
         where: {
