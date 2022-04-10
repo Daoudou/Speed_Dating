@@ -21,6 +21,7 @@ class AccueilController extends BaseController {
         }
     }
 
+
     async addPersonne() {
         const modalAddPersonne = $("#addPersonneModal")
         modalAddPersonne.style.display = 'block'

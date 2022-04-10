@@ -12,43 +12,37 @@
     <div class="col-6">
         <div id="buttonGroupAccueilLogger" class="btn-group" role="group" aria-label="Basic example">
             <div id="buttonAccueilLogger" class="buttonLog">
-                <div class="row">
-                    <div class="col-6 mr-5">
-                        <div>
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropDownMenu"
-                                    data-bs-toggle="dropdown" aria-expanded="false">Ajout
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a id="addButtonDateList" class="dropdown-item"
-                                       onclick="acceuilController.getInfosUserDate();acceuilController.dateListDisplay();">Ajouter
-                                    une rencontre</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a id="addButtonProfilDateList" class="dropdown-item"
-                                       onclick="acceuilController.addPersonne();">Ajouter une Personne</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-1">
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropDownMenuProfil"
-                                    data-bs-toggle="dropdown" aria-expanded="false">Profil
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" onclick="navigate('datingListPersonnal')">Liste de
-                                    rencontre
-                                    personnel</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" onclick="acceuilController.logOut();">Se
-                                    d&eacute;connecter</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <button class="btn btn-secondary" type="button" id="dateListGeneral" onclick="navigate('datingListGeneral')" >
+                    Liste de rencontre general
+                </button>
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropDownMenu"
+                        data-bs-toggle="dropdown" aria-expanded="false">Ajout
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a id="addButtonDateList" class="dropdown-item"
+                           onclick="acceuilController.getInfosUserDate();acceuilController.dateListDisplay();">Ajouter
+                        une rencontre</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a id="addButtonProfilDateList" class="dropdown-item"
+                           onclick="acceuilController.addPersonne();">Ajouter une Personne</a></li>
+                </ul>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropDownMenuProfil"
+                            data-bs-toggle="dropdown" aria-expanded="false">Profil
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" onclick="navigate('datingListPersonnal')">Liste de
+                            rencontre
+                            personnel</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" onclick="acceuilController.logOut();">Se
+                            d&eacute;connecter</a>
+                        </li>
+                    </ul>
             </div>
         </div>
     </div>

@@ -30,7 +30,7 @@ class DatingListPersonnal extends BaseController {
             }
         } catch (e) {
             console.error(e)
-            return {error: 'Error create date'}
+            return {error: 'Error get date list'}
         }
     }
 

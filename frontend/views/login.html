@@ -1,15 +1,16 @@
-<div class="container col-sm-1 col-md-1">
+<div class="container">
     <div class="form-container log-in-container">
         <div class="formConnected">
             <h1>Connexion</h1>
             <input class="form-control" id="loginEmail" type="email" placeholder="Email" required>
             <input class="form-control mb-3" id="loginPassword" type="password" placeholder="Password" required>
-            <a href="#" class="mb-3">Mot de passe oublié ?</a>
-            <a href="#" class="mb-3" onclick="navigate('register')">Vous n'avez pas de compte ?</a>
-            <button id="btnLogin" class="btn btn-secondary" data-toggle="modal" data-target="#loginModal"
+            <spna></spna>
+            <a href="#" class="pb-4">Mot de passe oublié ?</a>
+            <a href="#" class="pb-4" onclick="navigate('register')">Vous n'avez pas de compte ?</a>
+            <button class="btn btn-secondary" data-toggle="modal" data-target="#loginModal"
                     onclick="loginController.loginUsers()">Se connecter
             </button>
-            <button id="btnReturn" class="btn btn-secondary" onclick="navigate('index')">Annuler</button>
+            <button class="btn btn-secondary" onclick="navigate('index')">Annuler</button>
         </div>
     </div>
 </div>
