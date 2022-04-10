@@ -91,11 +91,11 @@ class datesApi {
     }
 
     getDateById(id){
-        return this.myFetchGet(`dating/deleteDate/${id}`)
+        return this.myFetchGet(`dating/userDateId/${id}`)
     }
 
     deleteDateList(id){
-        return this.myFetchDelete(`dating/userDateId/${id}`)
+        return this.myFetchDelete(`dating/deleteDate/${id}`)
     }
 
     updateDateList(id,body){
