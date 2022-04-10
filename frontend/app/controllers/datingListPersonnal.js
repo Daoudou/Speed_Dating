@@ -16,8 +16,6 @@ class DatingListPersonnal extends BaseController {
             console.log(date)
             const dateList = $("#ListDateTable")
             for (const dateKey of date) {
-               const dateListPersonnal = await this.modelDate.getDateById()
-                for (const dateKeyList of dateListPersonnal){
                     const infos = await this.modelInfos.getInfos(dateKey.InfoId)
                     dateList.innerHTML += `<tr id="datingListTr_${dateKey.id}">
                 <td class="mr-3" scope="col"> ${infos.firstName} </td>
@@ -29,7 +27,6 @@ class DatingListPersonnal extends BaseController {
                 <td class="pr-5"><button type="button" class="btn btn-secondary" onclick="datingListPersonnalController.displayListupdateDateList()">Mettre a jour</button></td>
                 <td class="mr-3"><button type="button" class="btn btn-secondary" onclick="datingListPersonnalController.removeListDate('${dateKey.id}')">Supprimer</button></td>
                </tr>`
-                }
             }
         } catch (e) {
             console.error(e)
