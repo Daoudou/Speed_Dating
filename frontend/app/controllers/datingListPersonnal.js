@@ -15,8 +15,7 @@ class DatingListPersonnal extends BaseController {
             console.log(date)
             const dateList = $("#ListDateTable")
             for (const dateKey of date) {
-                //const user = this.model.getUser(dateKey.UserId)
-                const dateListPersonnal = await this.modelDate.getDateById(dateKey.UserId)
+               const dateListPersonnal = await this.modelDate.getDateById(dateKey.UserId)
                 for (const dateKeyList of dateListPersonnal){
                     const infos = await this.modelInfos.getInfos(dateKey.InfoId)
                     dateList.innerHTML += `<tr id="datingListTr_${dateKey.id}">
@@ -31,6 +30,7 @@ class DatingListPersonnal extends BaseController {
                </tr>`
                 }
             }
+
         } catch (e) {
             console.error(e)
             return {error: 'Error get date list'}
