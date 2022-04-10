@@ -46,9 +46,9 @@ router.post('/login', body('email').notEmpty(), body('password').notEmpty(), asy
                     {id: userLogin.id, email: userLogin.email, password: userLogin.password},
                     'Cettenaufragéen\'entourepaslaraisonduplusfort.'
                 )
-                return res.status(200).send(token)
+                return res.send(token)
             } else {
-              return res.status(400).send('password invalid').end()
+              return res.status(401).send('password invalid').end()
             }
         }
     }catch (e) {
@@ -75,7 +75,7 @@ router.post(
             res.status(201).send('Utilisateur creer').end();
         } catch (e) {
             console.error(e)
-            return {error: "Echec de la creation de l'utilisateur"}
+            res.status(409).send('Echec de la creation de l\'utilisateur')
         }
     }
 );

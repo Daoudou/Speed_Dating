@@ -96,7 +96,7 @@ router.delete('/deleteDate/:id', async (req, res) => {
                 id: req.params.id
             }
         })
-        res.status(204)
+        res.status(200)
         res.send('Rencontre Supprimée')
     } catch (e) {
         console.error(e)
