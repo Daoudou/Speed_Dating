@@ -90,8 +90,8 @@ class datesApi {
         return this.myFetchGet('dating/')
     }
 
-    getDateById(id){
-        return this.myFetchGet(`dating/userDateId/${id}`)
+    getDateById(){
+        return this.myFetchGet('dating/userDateId')
     }
 
     deleteDateList(id){

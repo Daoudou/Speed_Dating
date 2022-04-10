@@ -7,6 +7,7 @@ class DatingListPersonnal extends BaseController {
         this.getDateListInfos().then(r => {
 
         })
+        this.token = sessionStorage.getItem('Auth')
     }
 
     async getDateListInfos() {
@@ -15,7 +16,7 @@ class DatingListPersonnal extends BaseController {
             console.log(date)
             const dateList = $("#ListDateTable")
             for (const dateKey of date) {
-               const dateListPersonnal = await this.modelDate.getDateById(dateKey.UserId)
+               const dateListPersonnal = await this.modelDate.getDateById()
                 for (const dateKeyList of dateListPersonnal){
                     const infos = await this.modelInfos.getInfos(dateKey.InfoId)
                     dateList.innerHTML += `<tr id="datingListTr_${dateKey.id}">

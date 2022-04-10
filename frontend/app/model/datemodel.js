@@ -21,9 +21,9 @@ class Datemodel {
         }
     }
 
-    async getDateById(id){
+    async getDateById(id, token){
         try {
-            return await this.api.getDateById(id)
+            return await this.api.getDateById(id, token)
         }catch (e) {
             console.error(e)
             return {error: 'Echec lors de la recuperation des rencontres'}
